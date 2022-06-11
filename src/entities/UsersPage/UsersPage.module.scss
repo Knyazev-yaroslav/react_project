@@ -1,0 +1,19 @@
+.user_list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.user_card {
+  border: 1px solid rgb(105, 105, 105);
+  background-color: rgb(190, 190, 190);
+  padding: 15px;
+  width: 200px;
+}
+
+.create_user__form_wrapper {
+  display: flex;
+  flex-direction: column;
+  max-width: 350px;
+  gap: 20px;
+}
