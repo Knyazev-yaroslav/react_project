@@ -1,24 +1,12 @@
-.sidebar_wrapper {
-  box-sizing: border-box;
-  height: 100%;
-  width: 280px;
-  padding: 60px 0;
-  background-color: rgb(209, 209, 209);
-}
-
-.sidebar_menu {
+.page_sidebar{
   display: flex;
-  flex-direction: column;
-  gap: 10px;
-  list-style: none;
-  padding-left: 15px;
-
-  &_item {
-    text-decoration: none;
-    color: black;
-  }
+  justify-content: center;
 }
 
-.active {
-  font-weight: 700;
+.container{
+  width: 1140px;
+}
+
+.sidebar_menu{
+  margin-top: 40px;
 }
