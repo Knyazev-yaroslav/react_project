@@ -1,7 +1,7 @@
 import React from 'react';
 import style from './Header.module.scss';
-import stiker_logo from '../../images/sticker_logo.svg';
-import profile_pic from '../../images/profile_pic.svg';
+import stiker_logo from '../../assets/images/sticker_logo.svg';
+import profile_pic from '../../assets/images/profile_pic.svg';
 
 const Header = () => {
   return (

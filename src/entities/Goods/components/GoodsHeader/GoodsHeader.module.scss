@@ -1,0 +1,33 @@
+.goods_header{
+  display: flex;
+  // align-items;
+  justify-content: space-between;
+  width: 100%;
+  height: 88px;
+  border-bottom: 1px solid rgba(42, 47, 55, 0.1);;
+
+  &__text{
+    h1{
+      font-family: 'Jost';
+      font-style: normal;
+      font-weight: 700;
+      font-size: 24px;
+      line-height: 32px;
+      color: #2C2D2E
+    }
+    p{
+      font-family: 'Jost';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 24px;
+      color: #2C2D2E;
+      opacity: 0.6;
+      margin: 0px;
+    }
+  }
+}
+
+.link{
+  text-decoration: none;
+}

@@ -1,0 +1,26 @@
+.categories{
+  height: 40px;
+  margin-top: 24px;
+  background: #FFFFFF;
+  display: flex;
+  // align-items: center;
+  ul{
+    list-style-type: none;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 24px;
+    padding-right: 92px;
+
+    li{
+      font-family: 'Jost';
+      font-style: normal;
+      font-weight: 700;
+      font-size: 12px;
+      line-height: 16px;
+      color: #2C2D2E;
+      opacity: 0.6;
+    }
+  }
+}

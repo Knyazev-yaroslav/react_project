@@ -1,0 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Jost:wght@400;700&family=Roboto&display=swap');
+
+.search{
+  
+  position: relative;
+}
+
+.input {
+  border: 0px;
+  width: 420px;
+  height: 40px;
+  box-sizing: border-box;
+  padding-left: 16px;
+  outline: none;
+
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 24px;
+  color: #2C2D2E;
+  opacity: 0.4;
+
+  &:focus{
+    border: 1px solid rgba(42, 47, 55, 0.1);
+  }
+}
+
+.icon {
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  left: 380px;
+  top: 8px;
+}

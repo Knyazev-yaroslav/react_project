@@ -1,12 +1,97 @@
-.page_sidebar{
-  display: flex;
-  justify-content: center;
-}
-
-.container{
-  width: 1140px;
-}
+@import url('https://fonts.googleapis.com/css2?family=Jost:wght@400;700&family=Roboto&display=swap');
 
 .sidebar_menu{
-  margin-top: 40px;
+  width: 263px;
+  height: 232px;
+  background-color: #FFFFFF;
+}
+
+.user_block{
+  height: 88px;
+  width: 100%;
+  border-bottom: 1px solid rgba(42, 47, 55, 0.1);
+  display: flex;
+  align-items: center;
+}
+
+.super_admin{
+  display: flex;
+  align-items: center;
+  width: 150px;
+  height: 40px;
+  flex-wrap: wrap;
+  margin-left: 24px;
+  justify-content: space-between;
+
+
+  h1 {
+    font-family: 'Jost';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  p {
+    margin: 0;
+    font-family: 'Jost';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 16px;
+    color: #2A2F37;
+    opacity: 0.6;
+  }
+}
+
+.sidebar_annonce{
+  height: 72px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid rgba(42, 47, 55, 0.1);
+
+
+  &__text{
+    display: flex;
+    padding-left: 24px;
+    border-left: 2px solid #4877F2;;
+
+    p{
+      font-family: 'Jost';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 24px;
+      color: #4877F2;
+    }
+
+    img{
+      margin-right: 12px;
+    }
+  }
+}
+
+.sidebar_exit{
+  height: 72px;
+  display: flex;
+  align-items: center;
+
+
+  &__text{
+    display: flex;
+    padding-left: 24px;
+
+    p{
+      font-family: 'Jost';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 24px;
+      color: #2A2F37;
+    }
+
+    img{
+      margin-right: 12px;
+    }
+  }
 }

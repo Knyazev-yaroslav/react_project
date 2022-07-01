@@ -1,0 +1,23 @@
+.btn{
+  width: 129px;
+  height: 40px;
+  display: flex;
+  background: #4877F2;
+  border-radius: 4px;
+  align-items: center;
+  justify-content: space-around;
+  border: 0px;
+
+  p{
+    font-family: 'Jost';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 24px;
+    color: #FFFFFF;
+  }
+
+  &:hover{
+    background-color: #608cfc;
+  }
+}

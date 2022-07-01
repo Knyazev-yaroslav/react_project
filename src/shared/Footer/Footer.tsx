@@ -1,6 +1,6 @@
 import React from 'react';
 import style from './Footer.module.scss';
-import stiker_logo from '../../images/sticker_logo.svg';
+import stiker_logo from '../../assets/images/sticker_logo.svg';
 
 const Footer = () => {
   return (
