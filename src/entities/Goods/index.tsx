@@ -17,6 +17,13 @@ const Goods = () => {
       </div>
       <Categories />
       <GoodsBlock />
+      <GoodsBlock />
+      <GoodsBlock />
+      <GoodsBlock />
+      <GoodsBlock />
+      <GoodsBlock />
+      <GoodsBlock />
+      <GoodsBlock />
     </div>
   );
 };
