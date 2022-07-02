@@ -6,6 +6,8 @@ import Goods from './entities/Goods';
 import StoreEditor from './entities/StoreEditor';
 
 const App = () => {
+  const now = new Date().toISOString().slice(0, 10);
+  console.log(now);
   return (
     <Routes>
       <Route path="/" element={<PageLayout />}>

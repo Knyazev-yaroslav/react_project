@@ -33,3 +33,16 @@
   left: 380px;
   top: 8px;
 }
+
+.icon_close{
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  left: 380px;
+  top: 8px;
+  opacity: 0.4;
+  cursor: pointer;
+  &:hover{
+    opacity: 0.8;
+  }
+}

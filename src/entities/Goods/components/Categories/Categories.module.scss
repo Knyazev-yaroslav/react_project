@@ -13,6 +13,27 @@
     padding-left: 24px;
     padding-right: 92px;
 
+    .title_sort{
+      display: flex;
+      align-items: center;
+      p{
+        margin-right:3px;
+      }
+      div{
+        height: 10px;
+        width: 8px;
+        display: flex;
+        flex-wrap: wrap;
+
+        .arrow_up{
+          color: black;
+        }
+        img{
+          margin-top: 1.5px;
+        }
+      }
+    }
+
     li{
       font-family: 'Jost';
       font-style: normal;

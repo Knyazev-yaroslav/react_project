@@ -35,6 +35,12 @@ module.exports = {
     'default-param-last': 'off',
     '@typescript-eslint/default-param-last': 'off',
     'react-hooks/exhaustive-deps': 'warn',
+    'react/require-default-props': 'off',
+    'react/no-unused-prop-types': 'off',
+    'jsx-a11y/click-events-have-key-events': 'off',
+    'jsx-a11y/no-noninteractive-element-interactions': 'off',
+    'no-param-reassign': 'off',
+    'import/no-cycle': 'off',
     'prettier/prettier': [
       'error',
       {

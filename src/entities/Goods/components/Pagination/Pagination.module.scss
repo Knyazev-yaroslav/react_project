@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=Jost:wght@400;700&family=Roboto&display=swap');
+
+.pagination {
+  li {
+    display: inline-block;
+
+    a {
+        text-align: center;
+        // line-height: 42px;
+        cursor: pointer;
+        display: inline-block;
+        color: black;
+        margin-left: 5px;
+        font-family: 'Jost';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 14px;
+        line-height: 24px;
+        opacity: 0.4;
+
+      &hover {
+        background-color: black;
+        color: #fff;
+      }
+    }
+  }
+
+
+  :global {
+
+    .previous{
+      a{
+
+        opacity: 0.8;
+      }
+      
+    } 
+
+    .next{
+      a{
+        opacity: 0.8;
+      }
+      
+
+    }
+
+    .selected {
+      a {
+        opacity: 0.8;
+      }
+    }
+  }
+}

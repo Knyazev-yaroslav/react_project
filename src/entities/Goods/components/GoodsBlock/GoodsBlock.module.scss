@@ -10,7 +10,7 @@
     display: flex;
     width: 100%;
     align-items: center;
-    justify-content: space-between;
+    // justify-content: space-between;
     padding-left: 24px;
     padding-right: 24px;
 
@@ -21,6 +21,18 @@
       font-size: 14px;
       line-height: 24px;
       color: #2C2D2E;
+      width: 251px;
+    }
+    .item_category{
+      width: 180px;
+    }
+
+    .item_date{
+      width: 225px;
+    }
+
+    .item_publicated{
+      width: 115px;
     }
 
     li{
@@ -29,7 +41,14 @@
       font-weight: 400;
       font-size: 14px;
       line-height: 24px;
-      color: #2C2D2E
+      color: #2C2D2E;
+
+      button{
+        // display: none;
+        border: 0px;
+        background-color: white;
+        width: 0px;
+      }
     }
 
     .popup{
@@ -64,6 +83,8 @@
             display: flex;
             align-items: center;
             border: 1px solid rgba(44, 45, 46, 0.08);
+            background-color: white;
+            z-index: 7;
             img{
               margin-left: 24px;
               margin-right: 12px;
@@ -78,7 +99,7 @@
               color: #2C2D2E;
             }
             &:hover{
-              background: rgba(44, 45, 46, 0.04);
+              background: rgb(240, 239, 239);
               img{
                 opacity: 1;
               }
