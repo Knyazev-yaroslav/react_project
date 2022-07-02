@@ -1,0 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=Jost:wght@400;700&family=Roboto&display=swap');
+
+.container{
+  height: 1000px;
+  width: 863px;
+  margin-right: auto;
+  margin-left: auto;
+
+  h2{
+    font-family: 'Jost';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 32px;
+    color: #2C2D2E;
+  }
+  h4{
+    font-family: 'Jost';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 24px;
+    color: #2C2D2E;
+  }
+  p{
+    font-family: 'Jost';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 24px;
+    color: #2C2D2E;
+  }
+}
+
+.get_back{
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+
+  p {
+    font-family: 'Jost';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 24px;
+    color: #2A2F37;
+    margin-left: 8px;
+  }
+}

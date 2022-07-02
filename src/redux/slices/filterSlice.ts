@@ -4,11 +4,15 @@ import { RootState } from '../store';
 export interface IFilterSlice {
   searchValue: string;
   currentPage: number;
+  orderValue: boolean;
+  titleSort: boolean;
 }
 
 const initialState: IFilterSlice = {
   searchValue: '',
   currentPage: 1,
+  orderValue: true,
+  titleSort: false,
 };
 
 const filterSlice = createSlice({
@@ -21,11 +25,17 @@ const filterSlice = createSlice({
     setCurrentPage(state, action: PayloadAction<number>) {
       state.currentPage = action.payload;
     },
+    setOrderValue(state) {
+      state.orderValue = !state.orderValue;
+    },
+    setTitleSort(state) {
+      state.titleSort = true;
+    },
   },
 });
 
 export const selectFilter = (state: RootState) => state.filter;
 
-export const { setSearchValue, setCurrentPage } = filterSlice.actions;
+export const { setSearchValue, setCurrentPage, setOrderValue, setTitleSort } = filterSlice.actions;
 
 export default filterSlice.reducer;

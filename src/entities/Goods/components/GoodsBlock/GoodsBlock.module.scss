@@ -69,6 +69,12 @@
         bottom: -135px;
         box-sizing: border-box;
         
+        .check_button{
+          display: flex;
+          text-decoration: none;
+          width: 100%;
+          height: calc(136/3);
+        }
 
         ul{
           list-style-type: none;
@@ -110,3 +116,5 @@
     }
   }
 }
+
+

@@ -12,18 +12,20 @@ import { selectFilter } from '../../redux/slices/filterSlice';
 
 const Goods = () => {
   const [items, setItems] = useState([]);
-  const { currentPage, searchValue } = useAppSelector(selectFilter);
+  const { currentPage, searchValue, orderValue, titleSort } = useAppSelector(selectFilter);
+
   useEffect(() => {
     const search = searchValue ? `title=${searchValue}` : '';
-
+    const order = orderValue ? 'desc' : 'asc';
+    const title = titleSort ? `sortBy=title&order=${order}` : '';
     axios
       .get(
-        `https://62bf109bbe8ba3a10d630620.mockapi.io/goods?${search}&page=${currentPage}&limit=8`
+        `https://62bf109bbe8ba3a10d630620.mockapi.io/goods?&page=${currentPage}&limit=8&${search}&${title}`
       )
       .then((res) => {
         setItems(res.data);
       });
-  }, [currentPage, searchValue]);
+  }, [currentPage, searchValue, orderValue]);
 
   const goods = items.map((obj: any) => {
     return (
@@ -33,6 +35,7 @@ const Goods = () => {
         category={obj.category}
         date={obj.date}
         publicated={obj.publicated}
+        id={obj.id}
       />
     );
   });

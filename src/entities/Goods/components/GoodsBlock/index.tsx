@@ -1,4 +1,5 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useEffect, useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
 import style from './GoodsBlock.module.scss';
 import check_svg from '../../../../assets/images/check.svg';
 import edit_svg from '../../../../assets/images/edit.svg';
@@ -9,13 +10,32 @@ type TGoodsBlock = {
   category: string;
   date: string;
   publicated: boolean;
+  id: string;
 };
 
-const GoodsBlock: FC<TGoodsBlock> = ({ title, category, date, publicated }) => {
+type TPopupClick = MouseEvent & {
+  path: Node[];
+};
+
+const GoodsBlock: FC<TGoodsBlock> = ({ title, category, date, publicated, id }) => {
   const [popupOpen, setPopuppOpen] = useState(false);
-  const popupSwitch = () => {
-    setPopuppOpen(!popupOpen);
-  };
+  const popupRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const myEvent = event as TPopupClick;
+
+      if (popupRef.current && !myEvent.path.includes(popupRef.current)) {
+        setPopuppOpen(false);
+      }
+    };
+
+    document.body.addEventListener('click', handleClickOutside);
+
+    return () => {
+      document.body.removeEventListener('click', handleClickOutside);
+    };
+  }, []);
 
   return (
     <div className={style.goods_items}>
@@ -27,14 +47,16 @@ const GoodsBlock: FC<TGoodsBlock> = ({ title, category, date, publicated }) => {
           <li className={style.item_publicated}>{publicated ? 'Да' : 'Нет'}</li>
           <li>
             <button type="button" onClick={() => setPopuppOpen(!popupOpen)}>
-              <div className={style.popup}>
+              <div ref={popupRef} className={style.popup}>
                 {popupOpen && (
                   <div className={style.popup__menu}>
                     <ul>
-                      <li>
-                        <img src={check_svg} alt="eye" />
-                        <p>Посмотреть</p>
-                      </li>
+                      <Link to={`/good/${id}`} className={style.check_button}>
+                        <li>
+                          <img src={check_svg} alt="eye" />
+                          <p>Посмотреть</p>
+                        </li>
+                      </Link>
                       <li>
                         <img src={edit_svg} alt="pen" />
                         <p>Редактировать</p>
