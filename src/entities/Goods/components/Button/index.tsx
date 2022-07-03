@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import style from './Button.module.scss';
-import button_plus from '../../assets/images/button_plus.svg';
+import button_plus from '../../../../assets/images/button_plus.svg';
 
 type TButton = {
   text: string;

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Button from '../../../../components/Button';
+import Button from '../Button';
 import style from './GoodsHeader.module.scss';
 
 const GoodsHeader = () => {
@@ -8,9 +8,9 @@ const GoodsHeader = () => {
     <div className={style.goods_header}>
       <div className={style.goods_header__text}>
         <h1>Объявления</h1>
-        <p>Всего: 45</p>
+        <p>Всего: 47</p>
       </div>
-      <Link to="/store" className={style.link}>
+      <Link to="/create" className={style.link}>
         <Button text="Добавить" />
       </Link>
     </div>

@@ -2,7 +2,7 @@ import React from 'react';
 import style from './Categories.module.scss';
 import arrow_up from '../../../../assets/images/title_arrow_up.svg';
 import arrow_down from '../../../../assets/images/title_arrow_down.svg';
-import { useAppDispatch, useAppSelector } from '../../../../hooks/hooks';
+import { useAppDispatch, useAppSelector } from '../../../../hooks/redux_hooks';
 import { selectFilter, setOrderValue, setTitleSort } from '../../../../redux/slices/filterSlice';
 
 const Categories = () => {

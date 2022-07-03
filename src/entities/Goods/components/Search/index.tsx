@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import style from './Search.module.scss';
 import search_svg from '../../../../assets/images/search.svg';
 import close_svg from '../../../../assets/images/close_icon.svg';
-import { useAppDispatch, useAppSelector } from '../../../../hooks/hooks';
+import { useAppDispatch, useAppSelector } from '../../../../hooks/redux_hooks';
 import { selectFilter, setSearchValue } from '../../../../redux/slices/filterSlice';
 
 const Search: FC = () => {

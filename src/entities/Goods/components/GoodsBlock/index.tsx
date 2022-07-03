@@ -1,5 +1,6 @@
 import React, { FC, useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 import style from './GoodsBlock.module.scss';
 import check_svg from '../../../../assets/images/check.svg';
 import edit_svg from '../../../../assets/images/edit.svg';
@@ -11,13 +12,14 @@ type TGoodsBlock = {
   date: string;
   publicated: boolean;
   id: string;
+  onDelete: () => void;
 };
 
 type TPopupClick = MouseEvent & {
   path: Node[];
 };
 
-const GoodsBlock: FC<TGoodsBlock> = ({ title, category, date, publicated, id }) => {
+const GoodsBlock: FC<TGoodsBlock> = ({ title, category, date, publicated, id, onDelete }) => {
   const [popupOpen, setPopuppOpen] = useState(false);
   const popupRef = useRef<HTMLDivElement>(null);
 
@@ -36,6 +38,11 @@ const GoodsBlock: FC<TGoodsBlock> = ({ title, category, date, publicated, id }) 
       document.body.removeEventListener('click', handleClickOutside);
     };
   }, []);
+
+  const onClickDelete = async () => {
+    await axios.delete(`https://62bf109bbe8ba3a10d630620.mockapi.io/goods/${id}`);
+    onDelete();
+  };
 
   return (
     <div className={style.goods_items}>
@@ -61,7 +68,7 @@ const GoodsBlock: FC<TGoodsBlock> = ({ title, category, date, publicated, id }) 
                         <img src={edit_svg} alt="pen" />
                         <p>Редактировать</p>
                       </li>
-                      <li>
+                      <li onClick={onClickDelete}>
                         <img src={delete_svg} alt="trash" />
                         <p>Удалить</p>
                       </li>

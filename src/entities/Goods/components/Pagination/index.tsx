@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import ReactPaginate from 'react-paginate';
 import style from './Pagination.module.scss';
-import { useAppSelector, useAppDispatch } from '../../../../hooks/hooks';
+import { useAppSelector, useAppDispatch } from '../../../../hooks/redux_hooks';
 import { selectFilter, setCurrentPage } from '../../../../redux/slices/filterSlice';
 
 const Pagination: FC = () => {
