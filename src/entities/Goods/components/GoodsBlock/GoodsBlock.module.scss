@@ -73,7 +73,8 @@
           display: flex;
           text-decoration: none;
           width: 100%;
-          height: calc(136/3);
+          box-sizing: border-box;
+          height: 46px;
         }
 
         ul{
@@ -84,8 +85,9 @@
           padding: 0;
 
           li{
+
             width: 100%;
-            height: calc(100%/3);
+            height: 46px;
             display: flex;
             align-items: center;
             border: 1px solid rgba(44, 45, 46, 0.08);

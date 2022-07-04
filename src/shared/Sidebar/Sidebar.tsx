@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import style from './Sidebar.module.scss';
 import admin_svg from '../../assets/images/admin_menu.svg';
 import admin_menu_book from '../../assets/images/admin_menu_book.svg';
@@ -17,9 +18,11 @@ const Sidebar = () => {
         </div>
       </div>
       <div className={style.sidebar_annonce}>
-        <div className={style.sidebar_annonce__text}>
-          <img src={admin_menu_book} alt="book" /> <p>Объявления</p>
-        </div>
+        <Link to="/" className={style.link}>
+          <div className={style.sidebar_annonce__text}>
+            <img src={admin_menu_book} alt="book" /> <p>Объявления</p>
+          </div>
+        </Link>
       </div>
       <div className={style.sidebar_exit}>
         <div className={style.sidebar_exit__text}>
