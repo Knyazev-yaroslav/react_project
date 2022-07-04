@@ -11,6 +11,18 @@ import GoodsBlock from './components/GoodsBlock';
 import { selectFilter } from '../../redux/slices/filterSlice';
 import useDebounce from '../../hooks/useDebounce';
 
+export type TGoodObj = {
+  title: string;
+  phone: string;
+  publicated: boolean;
+  price: string;
+  category: string;
+  description: string;
+  address: string;
+  id: string;
+  date: string;
+};
+
 const Goods = () => {
   const [items, setItems] = useState([]);
   const { currentPage, searchValue, orderValue, titleSort } = useAppSelector(selectFilter);
@@ -26,20 +38,23 @@ const Goods = () => {
     );
     setItems(data);
   };
-
   useEffect(() => {
     fetchGoods();
   }, [currentPage, debouncedSearch, orderValue]);
 
-  const goods = items.map((obj: any) => {
+  const goods = items.map((obj: TGoodObj) => {
     return (
       <GoodsBlock
-        key={`${obj.id}_${obj.name}`}
+        key={obj.id}
         title={obj.title}
         category={obj.category}
         date={obj.date}
         publicated={obj.publicated}
         id={obj.id}
+        price={obj.price}
+        description={obj.description}
+        address={obj.address}
+        phone={obj.phone}
         onDelete={fetchGoods}
       />
     );

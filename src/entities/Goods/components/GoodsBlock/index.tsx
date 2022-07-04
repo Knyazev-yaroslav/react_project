@@ -12,6 +12,10 @@ type TGoodsBlock = {
   date: string;
   publicated: boolean;
   id: string;
+  price: string;
+  description: string;
+  address: string;
+  phone: string;
   onDelete: () => void;
 };
 
@@ -19,10 +23,22 @@ type TPopupClick = MouseEvent & {
   path: Node[];
 };
 
-const GoodsBlock: FC<TGoodsBlock> = ({ title, category, date, publicated, id, onDelete }) => {
+const GoodsBlock: FC<TGoodsBlock> = ({
+  title,
+  category,
+  date,
+  publicated,
+  id,
+  price,
+  description,
+  address,
+  phone,
+  onDelete,
+}) => {
   const [popupOpen, setPopuppOpen] = useState(false);
   const popupRef = useRef<HTMLDivElement>(null);
 
+  const axiosRequestType = 'put';
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       const myEvent = event as TPopupClick;
@@ -43,7 +59,7 @@ const GoodsBlock: FC<TGoodsBlock> = ({ title, category, date, publicated, id, on
     await axios.delete(`https://62bf109bbe8ba3a10d630620.mockapi.io/goods/${id}`);
     onDelete();
   };
-
+  const goodsObj = { title, category, date, publicated, id, price, description, address, phone };
   return (
     <div className={style.goods_items}>
       <div className={style.goods_single_item}>
@@ -64,10 +80,15 @@ const GoodsBlock: FC<TGoodsBlock> = ({ title, category, date, publicated, id, on
                           <p>Посмотреть</p>
                         </li>
                       </Link>
-                      <li>
-                        <img src={edit_svg} alt="pen" />
-                        <p>Редактировать</p>
-                      </li>
+                      <Link
+                        to="/create"
+                        state={{ goodsObj, axiosRequestType }}
+                        className={style.check_button}>
+                        <li>
+                          <img src={edit_svg} alt="pen" />
+                          <p>Редактировать</p>
+                        </li>
+                      </Link>
                       <li onClick={onClickDelete}>
                         <img src={delete_svg} alt="trash" />
                         <p>Удалить</p>

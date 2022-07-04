@@ -7,43 +7,16 @@ export interface IFilterSlice {
   currentPage: number;
   orderValue: boolean;
   titleSort: boolean;
+  dataSize: number;
 }
-
-// type TSearchParams = {
-//   search: string;
-//   title: string;
-//   currentPage: number;
-// };
-
-// type TGoodsItem = {
-//   title: string;
-//   phone: string;
-//   publicated: boolean;
-//   price: string;
-//   category: string;
-//   description: string;
-//   location: string;
-//   id: string;
-//   date: string;
-// };
 
 const initialState: IFilterSlice = {
   searchValue: '',
   currentPage: 1,
   orderValue: true,
   titleSort: false,
+  dataSize: 0,
 };
-
-// export const fetchGoods = createAsyncThunk<TGoodsItem[], TSearchParams>(
-//   'pizza/fetchGoodsStatus',
-//   async (params) => {
-//     const { title, search, currentPage } = params;
-//     const { data } = await axios.get<TGoodsItem[]>(
-//       `https://62bf109bbe8ba3a10d630620.mockapi.io/goods?&page=${currentPage}&limit=8&${search}&${title}`
-//     );
-//     return data;
-//   }
-// );
 
 const filterSlice = createSlice({
   name: 'filters',
@@ -61,11 +34,15 @@ const filterSlice = createSlice({
     setTitleSort(state) {
       state.titleSort = true;
     },
+    setDataSize(state, action: PayloadAction<number>) {
+      state.dataSize = action.payload;
+    },
   },
 });
 
 export const selectFilter = (state: RootState) => state.filter;
 
-export const { setSearchValue, setCurrentPage, setOrderValue, setTitleSort } = filterSlice.actions;
+export const { setSearchValue, setCurrentPage, setOrderValue, setTitleSort, setDataSize } =
+  filterSlice.actions;
 
 export default filterSlice.reducer;

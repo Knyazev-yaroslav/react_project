@@ -1,5 +1,5 @@
 import React, { ChangeEvent, useRef, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Map from './Map';
 import style from './CreateAdvertisement.module.scss';
@@ -7,20 +7,41 @@ import arrow_left_svg from '../../assets/images/arrow_left.svg';
 
 import useDebounce from '../../hooks/useDebounce';
 
+type TState = {
+  goodsObj: {
+    title: string;
+    phone: string;
+    publicated: boolean;
+    price: string;
+    category: string;
+    description: string;
+    address: string;
+    id: string;
+    date: string;
+  };
+  axiosRequestType: string;
+};
+
 const CreateAdvertisement = () => {
-  const [address, setAddress] = useState('');
-  const [goodTitle, setGoodTitle] = useState('');
-  const [goodPrice, setGoodPrice] = useState('');
-  const [phoneNumber, setPhoneNumber] = useState('');
-  const [goodDescription, setGoodDescription] = useState('');
-  const [goodCategory, setGoodCategory] = useState('Автомобили');
-  const debouncedAddress = useDebounce(address, 750);
+  const location = useLocation();
+  const objState = location.state as TState;
+  const { title, phone, publicated, price, category, description, address, id, date } =
+    objState.goodsObj;
+
+  const { axiosRequestType } = objState;
+  const [addressMap, setAddressMap] = useState(address);
+  const [goodTitle, setGoodTitle] = useState(title);
+  const [goodPrice, setGoodPrice] = useState(price);
+  const [phoneNumber, setPhoneNumber] = useState(phone);
+  const [goodDescription, setGoodDescription] = useState(description);
+  const [goodCategory, setGoodCategory] = useState(category);
+  const debouncedAddress = useDebounce(addressMap, 750);
   const onChangeSelector = (event: ChangeEvent<HTMLSelectElement>) =>
     setGoodCategory(event.target.value);
 
+  new Date().toISOString().slice(0, 10);
   const publicateDate = new Date().toISOString().slice(0, 10);
   const navigate = useNavigate();
-
   const goodObj = {
     title: goodTitle,
     phone: phoneNumber,
@@ -28,17 +49,29 @@ const CreateAdvertisement = () => {
     price: goodPrice,
     category: goodCategory,
     description: goodDescription,
-    location: address,
-    id: String(Date.now()),
+    address: addressMap,
+    id,
     date: publicateDate,
   };
 
+  // const axiosPut = async () => {
+  //   await axios.put(`https://62bf109bbe8ba3a10d630620.mockapi.io/goods/${id}`, goodObj);
+  // };
+  // const axiosPost = async () => {
+  //   await axios.post(`https://62bf109bbe8ba3a10d630620.mockapi.io/goods/`, goodObj);
+  // };
+
+  // const currentRequest = () => (axiosRequestType === 'put' ? axiosPut() : axiosPost());
+  // console.log(currentRequest());
+
   const onSubmit = async (event: any) => {
     event.preventDefault();
-    await axios.post(`https://62bf109bbe8ba3a10d630620.mockapi.io/goods/`, goodObj);
+    if (axiosRequestType === 'put') {
+      await axios.put(`https://62bf109bbe8ba3a10d630620.mockapi.io/goods/${id}`, goodObj);
+    } else await axios.post(`https://62bf109bbe8ba3a10d630620.mockapi.io/goods/`, goodObj);
     navigate('/');
   };
-  // onSubmit={onButtonClick}
+
   return (
     <div className={style.store_editor}>
       <Link to="/" className={style.get_back}>
@@ -73,6 +106,7 @@ const CreateAdvertisement = () => {
                   onChange={onChangeSelector}
                   id="category_selector"
                   name="select_category"
+                  defaultValue={goodCategory}
                   className={style.selector}>
                   <option value="Автомобили">Автомобили</option>
                   <option value="Недвижимость">Недвижимость</option>
@@ -100,10 +134,10 @@ const CreateAdvertisement = () => {
                   required
                   onChange={(event) => setPhoneNumber(String(event.target.value))}
                   value={phoneNumber}
-                  type="tel"
+                  type="text"
                   placeholder="+7(9XX) XXX-XX-XX"
-                  pattern="^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$"
-                  maxLength={17}
+                  // pattern="^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$"
+                  // maxLength={17}
                 />
               </div>
               <div className={style.item_description}>
@@ -126,8 +160,8 @@ const CreateAdvertisement = () => {
                   required
                   type="text"
                   placeholder="Введите адрес"
-                  value={address}
-                  onChange={(event) => setAddress(event.target.value)}
+                  value={addressMap}
+                  onChange={(event) => setAddressMap(event.target.value)}
                 />
                 <Map address={debouncedAddress} />
               </div>

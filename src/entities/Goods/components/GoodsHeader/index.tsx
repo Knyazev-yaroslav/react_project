@@ -1,16 +1,32 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useAppSelector } from '../../../../hooks/redux_hooks';
+import { selectFilter } from '../../../../redux/slices/filterSlice';
 import Button from '../Button';
 import style from './GoodsHeader.module.scss';
 
 const GoodsHeader = () => {
+  const { dataSize } = useAppSelector(selectFilter);
+  const goodsObj = {
+    title: '',
+    phone: '',
+    publicated: '',
+    price: '',
+    category: '',
+    description: '',
+    address: '',
+    id: String(Date.now()),
+    date: '',
+    axiosRequestType: 'post',
+  };
+
   return (
     <div className={style.goods_header}>
       <div className={style.goods_header__text}>
         <h1>Объявления</h1>
-        <p>Всего: 47</p>
+        <p>Всего: {dataSize}</p>
       </div>
-      <Link to="/create" className={style.link}>
+      <Link state={{ goodsObj }} to="/create" className={style.link}>
         <Button text="Добавить" />
       </Link>
     </div>

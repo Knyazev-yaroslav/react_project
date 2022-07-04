@@ -13,7 +13,7 @@ const GoodDescription: FC = () => {
     category: string;
     publicated: boolean;
     date: string;
-    location: string;
+    address: string;
   }>();
   const { id } = useParams();
   const navigate = useNavigate();
@@ -46,7 +46,7 @@ const GoodDescription: FC = () => {
       <h4>Телефон продавца: +7 {good.phone}</h4>
       <h4>Цена товара: {good.price} ₽</h4>
       <h4>Дата публикации: {good.date}</h4>
-      <h4>Улица, на которой находится товар: {good.location}</h4>
+      <h4>Улица, на которой находится товар: {good.address}</h4>
       <p>
         Описание товара: <br />
         {good.description}
