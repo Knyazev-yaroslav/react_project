@@ -42,7 +42,6 @@ const GoodsBlock: FC<TGoodsBlock> = ({
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       const myEvent = event as TPopupClick;
-
       if (popupRef.current && !myEvent.path.includes(popupRef.current)) {
         setPopuppOpen(false);
       }

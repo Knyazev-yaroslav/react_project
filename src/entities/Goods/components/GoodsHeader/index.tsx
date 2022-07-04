@@ -1,18 +1,18 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { Link } from 'react-router-dom';
 import { useAppSelector } from '../../../../hooks/redux_hooks';
 import { selectFilter } from '../../../../redux/slices/filterSlice';
 import Button from '../Button';
 import style from './GoodsHeader.module.scss';
 
-const GoodsHeader = () => {
+const GoodsHeader: FC = () => {
   const { dataSize } = useAppSelector(selectFilter);
   const goodsObj = {
     title: '',
     phone: '',
     publicated: '',
     price: '',
-    category: '',
+    category: 'Автомобиль',
     description: '',
     address: '',
     id: String(Date.now()),

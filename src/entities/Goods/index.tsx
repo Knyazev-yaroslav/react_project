@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import axios from 'axios';
 import style from './Goods.module.scss';
 import { useAppSelector } from '../../hooks/redux_hooks';
@@ -23,7 +23,7 @@ export type TGoodObj = {
   date: string;
 };
 
-const Goods = () => {
+const Goods: FC = () => {
   const [items, setItems] = useState([]);
   const { currentPage, searchValue, orderValue, titleSort } = useAppSelector(selectFilter);
   const debouncedSearch = useDebounce(searchValue, 500);
