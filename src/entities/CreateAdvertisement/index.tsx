@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useRef, useState } from 'react';
+import React, { ChangeEvent, FC, FormEvent, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Map from './Map';
@@ -22,11 +22,10 @@ type TState = {
   axiosRequestType: string;
 };
 
-const CreateAdvertisement = () => {
+const CreateAdvertisement: FC = () => {
   const location = useLocation();
   const objState = location.state as TState;
-  const { title, phone, publicated, price, category, description, address, id, date } =
-    objState.goodsObj;
+  const { title, phone, price, category, description, address, id } = objState.goodsObj;
 
   const { axiosRequestType } = objState;
   const [addressMap, setAddressMap] = useState(address);
@@ -64,7 +63,7 @@ const CreateAdvertisement = () => {
   // const currentRequest = () => (axiosRequestType === 'put' ? axiosPut() : axiosPost());
   // console.log(currentRequest());
 
-  const onSubmit = async (event: any) => {
+  const onSubmit = async (event: FormEvent) => {
     event.preventDefault();
     if (axiosRequestType === 'put') {
       await axios.put(`https://62bf109bbe8ba3a10d630620.mockapi.io/goods/${id}`, goodObj);

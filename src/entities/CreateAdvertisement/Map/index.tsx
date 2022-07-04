@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { YMaps, Map as YMap, SearchControl } from 'react-yandex-maps';
 import style from './Map.module.scss';
 

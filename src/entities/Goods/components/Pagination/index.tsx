@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC } from 'react';
 import ReactPaginate from 'react-paginate';
 import axios from 'axios';
 import style from './Pagination.module.scss';
