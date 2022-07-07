@@ -2,7 +2,7 @@ import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import './assets/scss/normalize.scss';
 import PageLayout from './layouts/PageLayout/PageLayout';
-import Goods from './entities/Goods';
+import Goods from './entities/GoodsPage';
 import CreateAdvertisement from './entities/CreateAdvertisement';
 import GoodDescription from './entities/GoodDescription';
 

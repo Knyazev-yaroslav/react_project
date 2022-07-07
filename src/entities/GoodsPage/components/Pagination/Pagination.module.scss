@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Jost:wght@400;700&family=Roboto&display=swap');
+
+.pagination{
+  border: 0px;
+  display: flex;
+  p{
+    font-family: 'Jost';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 24px;
+    color: #2C2D2E;
+    margin: 0px;
+  }
+  
+  button{
+    width: 24px;
+    height: 24px;
+    border: 0px;
+    background-color: rgba(0, 0, 0, 0);
+    cursor: pointer;
+    padding: 0px;
+    margin-left: 16px;
+    margin-right: 0px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    &:disabled{
+      cursor: default;
+      img{
+        opacity: 0.6;
+      }
+    }
+  }
+}

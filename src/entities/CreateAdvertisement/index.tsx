@@ -115,6 +115,7 @@ const CreateAdvertisement: FC = () => {
                   <option value="Домашние животные">Домашние животные</option>
                   <option value="Аксессуары">Аксессуары</option>
                   <option value="Растения">Растения</option>
+                  <option value="Услуги">Услуги</option>
                 </select>
               </div>
               <div className={style.item_price}>
@@ -135,8 +136,8 @@ const CreateAdvertisement: FC = () => {
                   value={phoneNumber}
                   type="text"
                   placeholder="+7(9XX) XXX-XX-XX"
-                  // pattern="^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$"
-                  // maxLength={17}
+                  pattern="^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$"
+                  maxLength={17}
                 />
               </div>
               <div className={style.item_description}>

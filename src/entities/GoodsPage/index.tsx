@@ -5,11 +5,11 @@ import { useAppSelector } from '../../hooks/redux_hooks';
 
 import GoodsHeader from './components/GoodsHeader';
 import Search from './components/Search';
-import Paginaton from './components/Pagination';
 import Categories from './components/Categories';
 import GoodsBlock from './components/GoodsBlock';
 import { selectFilter } from '../../redux/slices/filterSlice';
 import useDebounce from '../../hooks/useDebounce';
+import Pagination from './components/Pagination';
 
 export type TGoodObj = {
   title: string;
@@ -65,7 +65,7 @@ const Goods: FC = () => {
       <GoodsHeader />
       <div className={style.goods_search_pagination_block}>
         <Search />
-        <Paginaton />
+        <Pagination />
       </div>
       <Categories />
       {goods}
