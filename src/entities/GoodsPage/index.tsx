@@ -26,6 +26,10 @@ export type TGoodObj = {
 const Goods: FC = () => {
   const [items, setItems] = useState([]);
   const { currentPage, searchValue, orderValue, titleSort } = useAppSelector(selectFilter);
+  // Чтобы у тебя дебаунс отработал, тебе нужно сам коллбэк, который ты обернул в дебаунс,
+  // в onChange поискового импута прокидывать, а там ты меняешь значение в сторе, и тем временем
+  // юзэффект тут у тебя на это значение смотрит и каждый раз на изменении значения выполняет запрос.
+  // Посмотри нетворки в браузере
   const debouncedSearch = useDebounce(searchValue, 500);
 
   const search = debouncedSearch ? `title=${debouncedSearch}` : '';
@@ -40,9 +44,13 @@ const Goods: FC = () => {
   };
   useEffect(() => {
     fetchGoods();
-  }, [currentPage, debouncedSearch, orderValue]);
+  }, [currentPage, orderValue]);
 
   const goods = items.map((obj: TGoodObj) => {
+    // очень много пропсов, лучше прокинь туда сам obj,
+    // опиши интерфейс и уже внутри компонента вытащи и прокинь, куда надо все значения
+    // то есть из пропсов у тебя будет только obj и onDelete.
+    // Ну и переименуй obj - чтобы семантично (=понятно) было)
     return (
       <GoodsBlock
         key={obj.id}
@@ -62,6 +70,7 @@ const Goods: FC = () => {
 
   return (
     <div className={style.goods_page}>
+      {/* Вот здесь хорошо все поделил на компоненты */}
       <GoodsHeader />
       <div className={style.goods_search_pagination_block}>
         <Search />

@@ -22,6 +22,9 @@ type TState = {
   axiosRequestType: string;
 };
 
+// Царь-компонент) надо его очень сильно пилить и избавляться от шести стейтов локальных, это не гуд, редакс в помощь:
+// работаешь с одной сущностью и пилишь ей там экшены
+
 const CreateAdvertisement: FC = () => {
   const location = useLocation();
   const objState = location.state as TState;
@@ -78,6 +81,13 @@ const CreateAdvertisement: FC = () => {
         <p>Вернуться назад</p>
       </Link>
       <form onSubmit={onSubmit}>
+        {/* Кнопку в отдельный компонент (у тебя он даже есть, такие штуки
+        должны быть универсальными, управляться входящими пропсами */}
+
+        {/* В целом старайся делать так, чтобы любой input Был переисользуем в разных ситуациях.
+         То есть пишешь такой компонент TextInput, который ты везде по проекту юзнешь.
+         Отдельный TextAreaInput, RadioButtonInput (например), и тд. Тут хорошее понимание дает архитектура в ui-либах, погляди,
+          как в antd том же или material-ui устроено */}
         <div className={style.save_item}>
           <div className={style.store_editor_container}>
             <p>{goodTitle}</p>
@@ -89,6 +99,8 @@ const CreateAdvertisement: FC = () => {
         <div>
           <div className={style.edit_block}>
             <div className={style.store_editor_container}>
+              {/* В отдельный компонент (сам инпут + название - label для этого можно использовать,
+              который можно к инпуту привязать) */}
               <div className={style.item_title}>
                 <p>Название товара</p>
                 <input
@@ -99,6 +111,7 @@ const CreateAdvertisement: FC = () => {
                   placeholder="Название"
                 />
               </div>
+              {/* В отдельный компонент */}
               <div className={style.item_category}>
                 <p>Категория</p>
                 <select
@@ -118,6 +131,7 @@ const CreateAdvertisement: FC = () => {
                   <option value="Услуги">Услуги</option>
                 </select>
               </div>
+              {/* В отдельный компонент */}
               <div className={style.item_price}>
                 <p>Стоимость</p>
                 <input
@@ -128,6 +142,7 @@ const CreateAdvertisement: FC = () => {
                   placeholder="Цена"
                 />
               </div>
+              {/* В отдельный компонент */}
               <div className={style.phone_number}>
                 <p>Телефон</p>
                 <input
@@ -140,6 +155,7 @@ const CreateAdvertisement: FC = () => {
                   maxLength={17}
                 />
               </div>
+              {/* В отдельный компонент */}
               <div className={style.item_description}>
                 <p>Описание</p>
                 <textarea
@@ -150,10 +166,12 @@ const CreateAdvertisement: FC = () => {
                   maxLength={3000}
                 />
               </div>
+              {/* В отдельный компонент */}
               <div className={style.item_photo}>
                 <p>Фотография</p>
                 <input id="file_upload" name="myFile" type="file" placeholder="Выбрать файл" />
               </div>
+              {/* В отдельный компонент */}
               <div className={style.item_location}>
                 <p>Местоположение</p>
                 <input

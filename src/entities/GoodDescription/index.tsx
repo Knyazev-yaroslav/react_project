@@ -5,6 +5,7 @@ import style from './GoodDescription.module.scss';
 import arrow_left_svg from '../../assets/images/arrow_left.svg';
 
 const GoodDescription: FC = () => {
+  // Лучше сразу создать интерфейс для такого стейта
   const [good, setGood] = useState<{
     description: string;
     title: string;
@@ -19,6 +20,8 @@ const GoodDescription: FC = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    // Все та же история, что и с другими хэндлерами - лучше описывать отдельно, причем сервисные штуки отдельно ото всех
+    // функций (services / api и тд, на вкус и цвет)
     const fetchGood = async () => {
       try {
         const { data } = await axios.get(`https://62bf109bbe8ba3a10d630620.mockapi.io/goods/${id}`);
