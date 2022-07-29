@@ -7,6 +7,7 @@ import style from './Pagination.module.scss';
 import prev_arrow from '../../../../assets/images/prev-pagination-arrow.svg';
 import next_arrow from '../../../../assets/images/next-pagination-arrow.svg';
 
+// добавлять бы страницу в url еще, чтобы при обновлении пользователь не улетал на начало списка
 const PaginateTest = () => {
   const goodsPerPage = 8;
   const { currentPage, dataSize } = useAppSelector(selectFilter);
@@ -33,6 +34,8 @@ const PaginateTest = () => {
   return (
     <div className={style.pagination}>
       <p>
+        {/* Мелочь, но где-нибудь тут можно вкрутить условный рендеринг, чтобы не рисовать пагинацию,
+         пока не пришли данные (чтобы не показывало 1-0 из 0, пока запрос идет */}
         {firstGoodIndex}—{Math.min(lastGoodIndex, dataSize)} из {dataSize}
       </p>
       <button disabled={currentPage === pageNumbers[0]} onClick={prevPage}>

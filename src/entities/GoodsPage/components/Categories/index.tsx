@@ -15,6 +15,8 @@ const Categories: FC = () => {
   return (
     <div className={style.categories}>
       <ul>
+        {/*  onClick={onClickSort}
+          тут вот так можно просто, так как функция не принимает аргументы, и можно как ссылку передавать */}
         <li
           onClick={() => onClickSort()}
           className={titleSort ? style.title_sort_active : style.title_sort}>

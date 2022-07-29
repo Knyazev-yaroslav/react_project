@@ -14,6 +14,7 @@ const Search: FC = () => {
       <input
         value={searchValue}
         onChange={(event) => {
+          // у тебя тут на любой ввод символа будет запрос на серв уходить
           dispatch(setSearchValue(event.target.value));
         }}
         className={style.input}
