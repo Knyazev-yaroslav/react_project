@@ -1,12 +1,8 @@
 import React, { FC, useEffect, useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
-import axios from 'axios';
 import style from './GoodsBlock.module.scss';
-import check_svg from '../../../../assets/images/check.svg';
-import edit_svg from '../../../../assets/images/edit.svg';
-import delete_svg from '../../../../assets/images/delete.svg';
+import PopupMenu from './popupMenu';
 
-type TGoodsBlock = {
+export type TGoodContent = {
   title: string;
   category: string;
   date: string;
@@ -16,6 +12,10 @@ type TGoodsBlock = {
   description: string;
   address: string;
   phone: string;
+};
+
+type TGoodsBlock = {
+  goodContent: TGoodContent;
   onDelete: () => void;
 };
 
@@ -23,41 +23,26 @@ type TPopupClick = MouseEvent & {
   path: Node[];
 };
 
-const GoodsBlock: FC<TGoodsBlock> = ({
-  title,
-  category,
-  date,
-  publicated,
-  id,
-  price,
-  description,
-  address,
-  phone,
-  onDelete,
-}) => {
+const GoodsBlock: FC<TGoodsBlock> = ({ goodContent, onDelete }) => {
   const [popupOpen, setPopuppOpen] = useState(false);
   const popupRef = useRef<HTMLDivElement>(null);
+  const { title, category, date, publicated, id, price, description, address, phone } = goodContent;
 
-  const axiosRequestType = 'put';
   useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
+    const handleOutsideClick = (event: MouseEvent) => {
       const myEvent = event as TPopupClick;
       if (popupRef.current && !myEvent.path.includes(popupRef.current)) {
         setPopuppOpen(false);
       }
     };
 
-    document.body.addEventListener('click', handleClickOutside);
+    document.body.addEventListener('click', handleOutsideClick);
 
     return () => {
-      document.body.removeEventListener('click', handleClickOutside);
+      document.body.removeEventListener('click', handleOutsideClick);
     };
   }, []);
 
-  const onClickDelete = async () => {
-    await axios.delete(`https://62bf109bbe8ba3a10d630620.mockapi.io/goods/${id}`);
-    onDelete();
-  };
   const goodsObj = { title, category, date, publicated, id, price, description, address, phone };
   return (
     <div className={style.goods_items}>
@@ -70,34 +55,9 @@ const GoodsBlock: FC<TGoodsBlock> = ({
           <li>
             <button type="button" onClick={() => setPopuppOpen(!popupOpen)}>
               <div ref={popupRef} className={style.popup}>
-                {popupOpen && (
-                  <div className={style.popup__menu}>
-                    <ul>
-                      <Link to={`/good/${id}`} className={style.check_button}>
-                        <li>
-                          <img src={check_svg} alt="eye" />
-                          <p>Посмотреть</p>
-                        </li>
-                      </Link>
-                      <Link
-                        to="/create"
-                        state={{ goodsObj, axiosRequestType }}
-                        className={style.check_button}>
-                        <li>
-                          <img src={edit_svg} alt="pen" />
-                          <p>Редактировать</p>
-                        </li>
-                      </Link>
-                      <li onClick={onClickDelete}>
-                        <img src={delete_svg} alt="trash" />
-                        <p>Удалить</p>
-                      </li>
-                    </ul>
-                  </div>
-                )}
+                {popupOpen && <PopupMenu onDelete={onDelete} goodsObj={goodsObj} />}
               </div>
             </button>
-            {/* <img src={popup_svg} alt="popup" /> */}
           </li>
         </ul>
       </div>

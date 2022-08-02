@@ -1,6 +1,7 @@
 /* eslint-disable react/button-has-type */
-import React from 'react';
+import React, { useEffect } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../../../hooks/redux_hooks';
 import { selectFilter, setCurrentPage, setDataSize } from '../../../../redux/slices/filterSlice';
 import style from './Pagination.module.scss';
@@ -15,6 +16,13 @@ const PaginateTest = () => {
   const pageNumbers = [];
   const totalPages = Math.ceil(dataSize / goodsPerPage);
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (window.location.search) {
+      const param = window.location.search.substring(13);
+      dispatch(setCurrentPage(Number(param)));
+    }
+  }, []);
   const arrayLength = async () => {
     const { data } = await axios.get(`https://62bf109bbe8ba3a10d630620.mockapi.io/goods`);
     dispatch(setDataSize(data.length));
@@ -30,7 +38,12 @@ const PaginateTest = () => {
   const prevPage = () => {
     dispatch(setCurrentPage(currentPage - 1));
   };
-  return (
+
+  useEffect(() => {
+    navigate(`?currentPage=${currentPage}`);
+  }, [currentPage]);
+
+  return dataSize ? (
     <div className={style.pagination}>
       <p>
         {firstGoodIndex}—{Math.min(lastGoodIndex, dataSize)} из {dataSize}
@@ -42,6 +55,8 @@ const PaginateTest = () => {
         <img src={next_arrow} alt="next" />
       </button>
     </div>
+  ) : (
+    <div>Загрузка...</div>
   );
 };
 

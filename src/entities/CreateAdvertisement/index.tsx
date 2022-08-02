@@ -1,11 +1,16 @@
 import React, { ChangeEvent, FC, FormEvent, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import Map from './Map';
 import style from './CreateAdvertisement.module.scss';
 import arrow_left_svg from '../../assets/images/arrow_left.svg';
 
-import useDebounce from '../../hooks/useDebounce';
+import PhotoInput from './components/PhotoInput';
+import PriceInput from './components/PriceInput';
+import TitleInput from './components/TitleInput';
+import CategorySelector from './components/CategorySelector';
+import PhoneInput from './components/PhoneInput';
+import DescriptionInput from './components/DescriptionInput';
+import AddressInput from './components/AdressInput';
 
 type TState = {
   goodsObj: {
@@ -34,11 +39,9 @@ const CreateAdvertisement: FC = () => {
   const [phoneNumber, setPhoneNumber] = useState(phone);
   const [goodDescription, setGoodDescription] = useState(description);
   const [goodCategory, setGoodCategory] = useState(category);
-  const debouncedAddress = useDebounce(addressMap, 750);
   const onChangeSelector = (event: ChangeEvent<HTMLSelectElement>) =>
     setGoodCategory(event.target.value);
 
-  new Date().toISOString().slice(0, 10);
   const publicateDate = new Date().toISOString().slice(0, 10);
   const navigate = useNavigate();
   const goodObj = {
@@ -52,16 +55,6 @@ const CreateAdvertisement: FC = () => {
     id,
     date: publicateDate,
   };
-
-  // const axiosPut = async () => {
-  //   await axios.put(`https://62bf109bbe8ba3a10d630620.mockapi.io/goods/${id}`, goodObj);
-  // };
-  // const axiosPost = async () => {
-  //   await axios.post(`https://62bf109bbe8ba3a10d630620.mockapi.io/goods/`, goodObj);
-  // };
-
-  // const currentRequest = () => (axiosRequestType === 'put' ? axiosPut() : axiosPost());
-  // console.log(currentRequest());
 
   const onSubmit = async (event: FormEvent) => {
     event.preventDefault();
@@ -89,82 +82,16 @@ const CreateAdvertisement: FC = () => {
         <div>
           <div className={style.edit_block}>
             <div className={style.store_editor_container}>
-              <div className={style.item_title}>
-                <p>Название товара</p>
-                <input
-                  required
-                  onChange={(event) => setGoodTitle(event.target.value)}
-                  value={goodTitle}
-                  type="text"
-                  placeholder="Название"
-                />
-              </div>
-              <div className={style.item_category}>
-                <p>Категория</p>
-                <select
-                  onChange={onChangeSelector}
-                  id="category_selector"
-                  name="select_category"
-                  defaultValue={goodCategory}
-                  className={style.selector}>
-                  <option value="Автомобили">Автомобили</option>
-                  <option value="Недвижимость">Недвижимость</option>
-                  <option value="Одежда">Одежда</option>
-                  <option value="Книги">Книги</option>
-                  <option value="Компьютерная переферия">Компьютерная переферия</option>
-                  <option value="Домашние животные">Домашние животные</option>
-                  <option value="Аксессуары">Аксессуары</option>
-                  <option value="Растения">Растения</option>
-                  <option value="Услуги">Услуги</option>
-                </select>
-              </div>
-              <div className={style.item_price}>
-                <p>Стоимость</p>
-                <input
-                  required
-                  onChange={(event) => setGoodPrice(event.target.value)}
-                  value={goodPrice}
-                  type="text"
-                  placeholder="Цена"
-                />
-              </div>
-              <div className={style.phone_number}>
-                <p>Телефон</p>
-                <input
-                  required
-                  onChange={(event) => setPhoneNumber(String(event.target.value))}
-                  value={phoneNumber}
-                  type="text"
-                  placeholder="+7(9XX) XXX-XX-XX"
-                  pattern="^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$"
-                  maxLength={17}
-                />
-              </div>
-              <div className={style.item_description}>
-                <p>Описание</p>
-                <textarea
-                  required
-                  onChange={(event) => setGoodDescription(event.target.value)}
-                  value={goodDescription}
-                  placeholder="Введите текст (до 3000 символов)"
-                  maxLength={3000}
-                />
-              </div>
-              <div className={style.item_photo}>
-                <p>Фотография</p>
-                <input id="file_upload" name="myFile" type="file" placeholder="Выбрать файл" />
-              </div>
-              <div className={style.item_location}>
-                <p>Местоположение</p>
-                <input
-                  required
-                  type="text"
-                  placeholder="Введите адрес"
-                  value={addressMap}
-                  onChange={(event) => setAddressMap(event.target.value)}
-                />
-                <Map address={debouncedAddress} />
-              </div>
+              <TitleInput goodTitle={goodTitle} setGoodTitle={setGoodTitle} />
+              <CategorySelector goodCategory={goodCategory} onChangeSelector={onChangeSelector} />
+              <PriceInput goodPrice={goodPrice} setGoodPrice={setGoodPrice} />
+              <PhoneInput phoneNumber={phoneNumber} setPhoneNumber={setPhoneNumber} />
+              <DescriptionInput
+                goodDescription={goodDescription}
+                setGoodDescription={setGoodDescription}
+              />
+              <PhotoInput />
+              <AddressInput addressMap={addressMap} setAddressMap={setAddressMap} />
             </div>
           </div>
         </div>

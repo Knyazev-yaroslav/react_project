@@ -16,7 +16,7 @@ const Categories: FC = () => {
     <div className={style.categories}>
       <ul>
         <li
-          onClick={() => onClickSort()}
+          onClick={onClickSort}
           className={titleSort ? style.title_sort_active : style.title_sort}>
           <p>Название объявления</p>
           <div>

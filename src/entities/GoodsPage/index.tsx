@@ -25,10 +25,9 @@ export type TGoodObj = {
 
 const Goods: FC = () => {
   const [items, setItems] = useState([]);
-  const { currentPage, searchValue, orderValue, titleSort } = useAppSelector(selectFilter);
-  const debouncedSearch = useDebounce(searchValue, 500);
+  const { currentPage, debouncedSearchValue, orderValue, titleSort } = useAppSelector(selectFilter);
 
-  const search = debouncedSearch ? `title=${debouncedSearch}` : '';
+  const search = debouncedSearchValue ? `title=${debouncedSearchValue}` : '';
   const order = orderValue ? 'desc' : 'asc';
   const title = titleSort ? `sortBy=title&order=${order}` : '';
 
@@ -38,26 +37,13 @@ const Goods: FC = () => {
     );
     setItems(data);
   };
+
   useEffect(() => {
     fetchGoods();
-  }, [currentPage, debouncedSearch, orderValue]);
+  }, [currentPage, orderValue, debouncedSearchValue]);
 
-  const goods = items.map((obj: TGoodObj) => {
-    return (
-      <GoodsBlock
-        key={obj.id}
-        title={obj.title}
-        category={obj.category}
-        date={obj.date}
-        publicated={obj.publicated}
-        id={obj.id}
-        price={obj.price}
-        description={obj.description}
-        address={obj.address}
-        phone={obj.phone}
-        onDelete={fetchGoods}
-      />
-    );
+  const goods = items.map((goodContent: TGoodObj) => {
+    return <GoodsBlock key={goodContent.id} goodContent={goodContent} onDelete={fetchGoods} />;
   });
 
   return (
