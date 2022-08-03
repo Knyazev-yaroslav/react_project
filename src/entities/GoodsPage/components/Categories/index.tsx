@@ -3,7 +3,8 @@ import style from './Categories.module.scss';
 import arrow_up from '../../../../assets/images/title_arrow_up.svg';
 import arrow_down from '../../../../assets/images/title_arrow_down.svg';
 import { useAppDispatch, useAppSelector } from '../../../../hooks/redux_hooks';
-import { selectFilter, setOrderValue, setTitleSort } from '../../../../redux/slices/filterSlice';
+import { setOrderValue, setTitleSort } from '../../../../redux/slices/filter/filterSlice';
+import { selectFilter } from '../../../../redux/slices/filter/selectors';
 
 const Categories: FC = () => {
   const dispatch = useAppDispatch();

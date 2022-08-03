@@ -3,7 +3,7 @@ import style from './Search.module.scss';
 import search_svg from '../../../../assets/images/search.svg';
 import close_svg from '../../../../assets/images/close_icon.svg';
 import { useAppDispatch } from '../../../../hooks/redux_hooks';
-import { setDebouncedSearchValue } from '../../../../redux/slices/filterSlice';
+import { setDebouncedSearchValue } from '../../../../redux/slices/filter/filterSlice';
 import useDebounce from '../../../../hooks/useDebounce';
 
 const Search: FC = () => {

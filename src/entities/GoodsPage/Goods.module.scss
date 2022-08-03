@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Jost:wght@400;700&family=Roboto&display=swap');
 
 .goods_page{
   width: 863px;
@@ -12,7 +13,28 @@
   align-items: center;
 }
 
+.good_error_info{
+  padding-left: 50px;
+  padding-top: 50px;
+  p{
+    font-family: 'Jost';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 24px;
+    color: #2C2D2E;
+    margin: 0px;
+  }
 
+  h2{
+    font-family: 'Jost';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 32px;
+    color: #2C2D2E
+  }
+}
 
 
 

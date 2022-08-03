@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { Link } from 'react-router-dom';
 import { useAppSelector } from '../../../../hooks/redux_hooks';
-import { selectFilter } from '../../../../redux/slices/filterSlice';
+import { selectFilter } from '../../../../redux/slices/filter/selectors';
 import Button from '../Button';
 import style from './GoodsHeader.module.scss';
 

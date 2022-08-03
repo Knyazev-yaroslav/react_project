@@ -3,10 +3,11 @@ import React, { useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../../../hooks/redux_hooks';
-import { selectFilter, setCurrentPage, setDataSize } from '../../../../redux/slices/filterSlice';
+import { setCurrentPage, setDataSize } from '../../../../redux/slices/filter/filterSlice';
 import style from './Pagination.module.scss';
 import prev_arrow from '../../../../assets/images/prev-pagination-arrow.svg';
 import next_arrow from '../../../../assets/images/next-pagination-arrow.svg';
+import { selectFilter } from '../../../../redux/slices/filter/selectors';
 
 const PaginateTest = () => {
   const goodsPerPage = 8;

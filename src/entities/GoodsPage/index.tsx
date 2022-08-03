@@ -1,15 +1,16 @@
 import React, { FC, useEffect, useState } from 'react';
 import axios from 'axios';
 import style from './Goods.module.scss';
-import { useAppSelector } from '../../hooks/redux_hooks';
+import { useAppDispatch, useAppSelector } from '../../hooks/redux_hooks';
 
 import GoodsHeader from './components/GoodsHeader';
 import Search from './components/Search';
 import Categories from './components/Categories';
 import GoodsBlock from './components/GoodsBlock';
-import { selectFilter } from '../../redux/slices/filterSlice';
-import useDebounce from '../../hooks/useDebounce';
 import Pagination from './components/Pagination';
+import { selectFilter } from '../../redux/slices/filter/selectors';
+import { fetchGoods } from '../../redux/slices/good/asyncActions';
+import { selectGoodData } from '../../redux/slices/good/selectors';
 
 export type TGoodObj = {
   title: string;
@@ -24,26 +25,24 @@ export type TGoodObj = {
 };
 
 const Goods: FC = () => {
-  const [items, setItems] = useState([]);
+  const dispatch = useAppDispatch();
+  const { items, status } = useAppSelector(selectGoodData);
   const { currentPage, debouncedSearchValue, orderValue, titleSort } = useAppSelector(selectFilter);
 
-  const search = debouncedSearchValue ? `title=${debouncedSearchValue}` : '';
-  const order = orderValue ? 'desc' : 'asc';
-  const title = titleSort ? `sortBy=title&order=${order}` : '';
+  const getGoods = async () => {
+    const search = debouncedSearchValue ? `title=${debouncedSearchValue}` : '';
+    const order = orderValue ? 'desc' : 'asc';
+    const title = titleSort ? `sortBy=title&order=${order}` : '';
 
-  const fetchGoods = async () => {
-    const { data } = await axios.get(
-      `https://62bf109bbe8ba3a10d630620.mockapi.io/goods?&page=${currentPage}&limit=8&${search}&${title}`
-    );
-    setItems(data);
+    dispatch(fetchGoods({ search, title, currentPage }));
   };
 
   useEffect(() => {
-    fetchGoods();
+    getGoods();
   }, [currentPage, orderValue, debouncedSearchValue]);
 
   const goods = items.map((goodContent: TGoodObj) => {
-    return <GoodsBlock key={goodContent.id} goodContent={goodContent} onDelete={fetchGoods} />;
+    return <GoodsBlock key={goodContent.id} goodContent={goodContent} onDelete={getGoods} />;
   });
 
   return (
@@ -54,7 +53,14 @@ const Goods: FC = () => {
         <Pagination />
       </div>
       <Categories />
-      {goods}
+      {status === 'error' ? (
+        <div className={style.good_error_info}>
+          <h2>Произошла ошибка 😢</h2>
+          <p>Не удалось получить товары, попробуйте позже</p>
+        </div>
+      ) : (
+        goods
+      )}
     </div>
   );
 };

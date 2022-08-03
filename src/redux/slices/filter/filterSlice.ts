@@ -1,13 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { RootState } from '../store';
-
-export interface IFilterSlice {
-  debouncedSearchValue: string;
-  currentPage: number;
-  orderValue: boolean;
-  titleSort: boolean;
-  dataSize: number;
-}
+import { IFilterSlice } from './types';
 
 const initialState: IFilterSlice = {
   debouncedSearchValue: '',
@@ -38,8 +30,6 @@ const filterSlice = createSlice({
     },
   },
 });
-
-export const selectFilter = (state: RootState) => state.filter;
 
 export const { setDebouncedSearchValue, setCurrentPage, setOrderValue, setTitleSort, setDataSize } =
   filterSlice.actions;
