@@ -5,11 +5,17 @@
 ### Использованные технологии:
 
 Стек React
+
 Функциональные компоненты, React-hooks
+
 Модульные стили
+
 Роутинг React-router-dom
+
 ReduxToolKit
+
 Асинхронные экшены Redux-thunk
+
 Работа с API с помощью клиента Axios
 
 ### `npm start`
