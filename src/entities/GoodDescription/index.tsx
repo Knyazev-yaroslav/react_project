@@ -21,8 +21,6 @@ const GoodDescription: FC = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Все та же история, что и с другими хэндлерами - лучше описывать отдельно, причем сервисные штуки отдельно ото всех
-    // функций (services / api и тд, на вкус и цвет)
     const fetchGood = async () => {
       try {
         const { data } = await axios.get(`https://62bf109bbe8ba3a10d630620.mockapi.io/goods/${id}`);
