@@ -1,6 +1,6 @@
 # Доска объявлений
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+В данном проекте реализована доска объявлений с функционалом добавления, редактирования и удаления объявлений.
 
 ## Available Scripts
 
