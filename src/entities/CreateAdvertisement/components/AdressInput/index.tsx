@@ -9,7 +9,7 @@ type TAddressInput = {
 };
 
 const AddressInput: FC<TAddressInput> = ({ addressMap, setAddressMap }) => {
-  const debouncedAddress = useDebounce(addressMap, 750);
+  const debouncedAddress = useDebounce(addressMap, 500);
 
   return (
     <div className={style.item_location}>
