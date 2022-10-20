@@ -61,6 +61,7 @@ const Goods: FC = () => {
       ) : (
         goods
       )}
+      11
     </div>
   );
 };
