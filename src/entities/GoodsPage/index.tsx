@@ -61,10 +61,6 @@ const Goods: FC = () => {
       ) : (
         goods
       )}
-<<<<<<< HEAD
-=======
-      11222
->>>>>>> c7cde8a039b60ef49b6a0d62c283c7f654beb579
     </div>
   );
 };
