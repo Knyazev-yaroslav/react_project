@@ -24,15 +24,16 @@ type TPopupClick = MouseEvent & {
 };
 
 const GoodsBlock: FC<TGoodsBlock> = ({ goodContent, onDelete }) => {
-  const [popupOpen, setPopuppOpen] = useState(false);
+  const [popupOpen, setPopupOpen] = useState(false);
   const popupRef = useRef<HTMLDivElement>(null);
   const { title, category, date, publicated, id, price, description, address, phone } = goodContent;
 
   useEffect(() => {
     const handleOutsideClick = (event: MouseEvent) => {
       const myEvent = event as TPopupClick;
-      if (popupRef.current && !myEvent.path.includes(popupRef.current)) {
-        setPopuppOpen(false);
+      const path = myEvent.path || (event.composedPath && event.composedPath());
+      if (popupRef.current && !path.includes(popupRef.current)) {
+        setPopupOpen(false);
       }
     };
 
@@ -53,7 +54,7 @@ const GoodsBlock: FC<TGoodsBlock> = ({ goodContent, onDelete }) => {
           <li className={style.item_date}>{date}</li>
           <li className={style.item_publicated}>{publicated ? 'Да' : 'Нет'}</li>
           <li>
-            <button type="button" onClick={() => setPopuppOpen(!popupOpen)}>
+            <button type="button" onClick={() => setPopupOpen(!popupOpen)}>
               <div ref={popupRef} className={style.popup}>
                 {popupOpen && <PopupMenu onDelete={onDelete} goodsObj={goodsObj} />}
               </div>
