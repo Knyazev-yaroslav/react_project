@@ -44,7 +44,7 @@ const Goods: FC = () => {
   const goods = items.map((goodContent: TGoodObj) => {
     return <GoodsBlock key={goodContent.id} goodContent={goodContent} onDelete={getGoods} />;
   });
-
+  12312321321;
   return (
     <div className={style.goods_page}>
       <GoodsHeader />
