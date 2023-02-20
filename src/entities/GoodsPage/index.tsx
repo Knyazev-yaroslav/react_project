@@ -44,7 +44,6 @@ const Goods: FC = () => {
   const goods = items.map((goodContent: TGoodObj) => {
     return <GoodsBlock key={goodContent.id} goodContent={goodContent} onDelete={getGoods} />;
   });
-  111;
   return (
     <div className={style.goods_page}>
       <GoodsHeader />
